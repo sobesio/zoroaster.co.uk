@@ -112,3 +112,8 @@ blockquote {
 .left-column .badges a {
     display: block;
 }
+footer {
+    margin-top: 1em;
+    border-top: 1px dashed;
+    padding-top: 1em;
+}
