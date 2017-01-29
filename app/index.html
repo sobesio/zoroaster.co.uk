@@ -40,65 +40,64 @@
 
             <h2> Why use Zoroaster? </h2>
             You should use zoroaster if you've had enough of mocha's before and stuff and wanna do something different,
-            and since tests should be completely independent (with a controlled context), it help to think of every test
-            function as a unit, a method, which should not produce any side effects, i.e. the purist approach to testing.
+            and since tests should be completely independent (with a controlled context), it helps to think of every test
+            function as a unit, a method, which should not produce any side effects, i.e. be as pure as possible.
 
-            One of the issues that we face in testing is that in complex tests it is much easier to have a scope to be
-            shared by every test in a test suite. When working with zoroaster, you write tests like this:
+            When working with zoroaster, you write tests like this:
 
             <pre><code class="javascript">const assert = require('assert')
-    const os = require('os')
-    const fs = require('fs')
-    const path = require('path')
+const os = require('os')
+const fs = require('fs')
+const path = require('path')
 
-    const pad = n => (n < 10 ? `0${n}` : String(n))
-    const getDateString = () => {
-        const date = new Date()
-        const MM = pad(date.getMonth() + 1)
-        const dd = pad(date.getDate())
-        const yyyy = date.getFullYear()
-        const ss = pad(date.getSeconds())
-        const mm = pad(date.getMinutes())
-        const hh = pad(date.getHours())
-        return `${yyyy}-${MM}-${dd}-${hh}-${mm}-${ss}`
-    }
-    const id = `zoroaster-test-${getDateString()}`
-    const mkTestDir = (dirName) => new Promise((resolve, reject) => {
-        const dirPath = path.join(os.tmpdir(), dirName)
-        fs.mkdir(dirPath, (err) => (
-            err ? reject(err) : resolve(dirPath)
-        ))
-    })
+const pad = n => (n < 10 ? `0${n}` : String(n))
+const getDateString = () => {
+    const date = new Date()
+    const MM = pad(date.getMonth() + 1)
+    const dd = pad(date.getDate())
+    const yyyy = date.getFullYear()
+    const ss = pad(date.getSeconds())
+    const mm = pad(date.getMinutes())
+    const hh = pad(date.getHours())
+    return `${yyyy}-${MM}-${dd}-${hh}-${mm}-${ss}`
+}
+const id = `zoroaster-test-${getDateString()}`
+const mkTestDir = (dirName) => new Promise((resolve, reject) => {
+    const dirPath = path.join(os.tmpdir(), dirName)
+    fs.mkdir(dirPath, (err) => (
+        err ? reject(err) : resolve(dirPath)
+    ))
+})
 
-    let testDir
+let testDir
 
-    module.exports = {
-        _before: {
-            createTestDir: () => mkTestDir(id)
-                .then((res) => {
-                    testDir = res
-                    console.log('Using test directory: %s', testDir)
-                }),
+module.exports = {
+    _before: {
+        createTestDir: () => mkTestDir(id)
+            .then((res) => {
+                testDir = res
+                console.log('Using test directory: %s', testDir)
+            }),
+    },
+    main: {
+        testA: () => {
+            const expectedValue = 50
+            return Promise.resolve(50)
+                .then(res =>
+                    assert(res === expectedValue)
+                )
         },
-        main: {
-            testA: () => {
-                const expectedValue = 50
-                return Promise.resolve(50)
-                    .then(res =>
-                        assert(res === expectedValue)
-                    )
-            },
-        },
+    },
 
-        _after: {
-            removeTestDir: () => new Promise((resolve, reject) => {
-                fs.rmdir(testDir, err => (
-                    err ? reject(err) : resolve(testDir)
-                ))
-            })
-                .then(console.log.bind(null, 'Removed test directory %s')),
-        },
-    }
+    _after: {
+        removeTestDir: () => new Promise((resolve, reject) => {
+            fs.rmdir(testDir, err => (
+                err ? reject(err) : resolve(testDir)
+            ))
+        })
+            .then(console.log.bind(null, 'Removed test directory %s')),
+    },
+}
             </code></pre>
             <pre><code class="bash">zoroaster test</code></pre>
             <pre><code class="bash"> test
