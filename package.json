@@ -1,0 +1,37 @@
+{
+  "name": "zoroaster.co.uk",
+  "version": "1.0.0",
+  "description": "zoroaster.co.uk website ",
+  "main": "index.js",
+  "scripts": {
+    "test": "zoroaster test",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sobesednik/zoroaster.co.uk.git"
+  },
+  "keywords": [
+    "zoroaster",
+    "test",
+    "website"
+  ],
+  "author": "anton",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sobesednik/zoroaster.co.uk/issues"
+  },
+  "homepage": "https://github.com/Sobesednik/zoroaster.co.uk#readme",
+  "private": true,
+  "devDependencies": {
+    "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "^2.0.0-rc.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^2.2.0",
+    "zoroaster": "^0.2.0"
+  },
+  "dependencies": {
+    "highlight.js": "^9.9.0",
+    "lodash": "^4.17.4"
+  }
+}

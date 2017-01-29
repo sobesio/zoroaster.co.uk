@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Hello world from zoroaster!</title>
+        <link href="/dist/bundle.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i" rel="stylesheet">
+    </head>
+    <body>
+        <div class="left-column" style="text-align: center; float:left; margin-right: 2em;">
+            <img src="/dist/img/220px-Zartosht_30salegee.jpg" alt"prophet zoroaster" style="margin-bottom: 1em;"></img><br>
+
+            <div class="badges">
+                <a href="https://badge.fury.io/js/zoroaster"><img src="https://badge.fury.io/js/zoroaster.svg" alt="npm version" height="18"></a>
+                <a href="https://travis-ci.org/Sobesednik/zoroaster"><img src="https://travis-ci.org/Sobesednik/zoroaster.svg?branch=master" alt="travis ci"></a>
+                <a href="https://ci.appveyor.com/project/zavr-1/zoroaster/branch/master"><img src="https://ci.appveyor.com/api/projects/status/1gc2cqf97ty69mfw/branch/master?svg=true" alt="appveyor ci"></a>
+            </div>
+
+            <h2> npm links </h2>
+            <p>
+                <a href="https://www.npmjs.com/package/zoroaster">zoroaster</a>
+                <a href="https://www.npmjs.com/package/tape">tape</a>
+                <a href="https://www.npmjs.com/package/mocha">mocha</a>
+                <a href="https://www.npmjs.com/package/jasmine">jasmine</a>
+            </p>
+            <blockquote>
+                If you don't test, you don't program.
+            </blockquote>
+        </div>
+        <div class="right-column">
+            <h1>What is Zoroaster?</h1>
+            <p>
+                <span class="tm">zoroaster</span> is a testing framework for Node.js.
+                Unlike <span class="tm">mocha</span> and <span class="tm">jasmine</span>,
+                it does not export global functions like describe, it, before, beforeAll, breforeEach, but requires to add
+                test functions as properties of an object. This object can be exported
+                with module.exports in test.js file, and then `zoroaster test`
+                command can be used to start testing.
+            </p>
+
+
+            <h2> Why use Zoroaster? </h2>
+            You should use zoroaster if you've had enough of mocha's before and stuff and wanna do something different,
+            and since tests should be completely independent (with a controlled context), it help to think of every test
+            function as a unit, a method, which should not produce any side effects, i.e. the purist approach to testing.
+
+            One of the issues that we face in testing is that in complex tests it is much easier to have a scope to be
+            shared by every test in a test suite. When working with zoroaster, you write tests like this:
+
+            <pre><code class="javascript">const assert = require('assert')
+    const os = require('os')
+    const fs = require('fs')
+    const path = require('path')
+
+    const pad = n => (n < 10 ? `0${n}` : String(n))
+    const getDateString = () => {
+        const date = new Date()
+        const MM = pad(date.getMonth() + 1)
+        const dd = pad(date.getDate())
+        const yyyy = date.getFullYear()
+        const ss = pad(date.getSeconds())
+        const mm = pad(date.getMinutes())
+        const hh = pad(date.getHours())
+        return `${yyyy}-${MM}-${dd}-${hh}-${mm}-${ss}`
+    }
+    const id = `zoroaster-test-${getDateString()}`
+    const mkTestDir = (dirName) => new Promise((resolve, reject) => {
+        const dirPath = path.join(os.tmpdir(), dirName)
+        fs.mkdir(dirPath, (err) => (
+            err ? reject(err) : resolve(dirPath)
+        ))
+    })
+
+    let testDir
+
+    module.exports = {
+        _before: {
+            createTestDir: () => mkTestDir(id)
+                .then((res) => {
+                    testDir = res
+                    console.log('Using test directory: %s', testDir)
+                }),
+        },
+        main: {
+            testA: () => {
+                const expectedValue = 50
+                return Promise.resolve(50)
+                    .then(res =>
+                        assert(res === expectedValue)
+                    )
+            },
+        },
+
+        _after: {
+            removeTestDir: () => new Promise((resolve, reject) => {
+                fs.rmdir(testDir, err => (
+                    err ? reject(err) : resolve(testDir)
+                ))
+            })
+                .then(console.log.bind(null, 'Removed test directory %s')),
+        },
+    }
+            </code></pre>
+            <pre><code class="bash">zoroaster test</code></pre>
+            <pre><code class="bash"> test
+    example.js
+        _before
+    Using test directory: /var/folders/r_/zlsmk80s2qv9djr8j4khyrcw0000gp/T/zoroaster-test-2017-01-29-17-28-00
+        ✓  createTestDir
+        main
+        ✓  testA
+        _after
+    Removed test directory /var/folders/r_/zlsmk80s2qv9djr8j4khyrcw0000gp/T/zoroaster-test-2017-01-29-17-28-00
+        ✓  removeTestDir
+
+    Executed 3 tests.
+            </code></pre>
+
+            Stay tuned!
+        </div>
+
+        <footer>
+            <a href="sobes.io" style="color: #C80815">Sobesednik Media</a> 2017
+        </footer>
+    </body>
+    <script src="/dist/bundle.js"></script>
+</html>
