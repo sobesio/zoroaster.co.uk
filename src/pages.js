@@ -12,32 +12,32 @@ module.exports = {
     ],
     pages: [{
         title: 'Main Page',
-        name: 'index.html',
+        url: 'index.html',
         file: path.join(appDir, 'index.md'),
     },
     {
         title: 'Test Context',
-        name: 'test-context.html',
+        url: 'test-context.html',
         file: path.join(appDir, 'test-context.md'),
     },
     {
         title: 'Test File Organisation',
-        name: 'test-file-organisation.html',
+        url: 'test-file-organisation.html',
         file: path.join(appDir, 'file-structure.md'),
     },
     {
         title: 'JS Testing Frameworks',
-        name: 'comparison-of-javascript-testing-frameworks.html',
+        url: 'comparison-of-javascript-testing-frameworks.html',
         file: path.join(appDir, 'comparison.md'),
     },
     {
         title: 'Test-Driven Development',
-        name: 'test-driven-development.html',
+        url: 'test-driven-development.html',
         file: path.join(appDir, 'tdd.md'),
     },
     {
         title: 'Testing Gloassry',
-        name: 'testing-glossary.html',
+        url: 'testing-glossary.html',
         file: path.join(appDir, 'glossary.md'),
     },
     ],

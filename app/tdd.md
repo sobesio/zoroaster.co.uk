@@ -106,7 +106,7 @@ Executed 1 tests.
 ```
 
 By progressively writing tests and adding source code which makes them pass, the software
-automatically aquires new specification in form of tests. ``Test-Driven Development`` helps
+automatically acquires new specification in form of tests. ``Test-Driven Development`` helps
 to develop discipline in consistently writing tests to make sure that the product meets
 quality expectations. It is very easy to write a lot of code which works _now_, but is
 unmaintainable in the long-run due to the lack of test coverage. Therefore, if having tests is
@@ -144,7 +144,7 @@ Executed 1 tests.
 ```
 
 Having tests re-run automatically saves a lot of developer's time. It facilitates
-``test-driven development`` and allows her to focus on tests and not be interrupted by contant
+``test-driven development`` and allows her to focus on tests and not be interrupted by constant
 necessity to execute a test command manually.
 
 ### Mocha watch mode

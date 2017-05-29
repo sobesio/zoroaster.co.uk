@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "zoroaster test",
-    "build": "node src/runtemplate.js"
+    "build": "splendid ./src/pages.js build"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
     "highlight.js": "9.11.0",
     "lodash": "4.17.4",
     "restream": "1.2.0",
+    "splendid": "1.0.1",
     "wrote": "0.4.0"
   }
 }

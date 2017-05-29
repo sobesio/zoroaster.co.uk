@@ -1,6 +1,3 @@
-body {
-    margin: 0;
-}
 .tm {
     background-color: lightgreen;
     font-family: 'Source Code Pro', monospace;
@@ -12,12 +9,10 @@ body {
     font-weight: bolder;
 }
 body {
+    margin: 0;
     font-family: 'Fira Sans Condensed', sans-serif;
 }
-blockquote {
-    margin: 0;
-    font-style: italic;
-}
+
 .left-column .badges a {
     display: block;
 }
@@ -103,4 +98,8 @@ code {
 }
 .logo > img {
     max-width: 150px;
+}
+.Pages > ul {
+    list-style-type: none;
+    padding: 0;
 }
