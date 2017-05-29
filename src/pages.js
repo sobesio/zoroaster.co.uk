@@ -12,8 +12,11 @@ module.exports = {
     ],
     pages: [{
         name: 'index.html',
-        source: String(fs.readFileSync(path.join(appDir, 'index.html'))),
-        file: path.join(appDir, 'index.html'),
+        file: path.join(appDir, 'index.md'),
+    },
+    {
+        name: 'test-context.html',
+        file: path.join(appDir, 'test-context.md'),
     },
     ],
     output: path.join(__dirname, '../build/'),

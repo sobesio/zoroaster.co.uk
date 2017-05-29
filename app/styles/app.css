@@ -1,5 +1,12 @@
 .tm {
     background-color: lightgreen;
+    font-family: 'Source Code Pro', monospace;
+}
+.em {
+    font-style: italic;
+}
+.bold {
+    font-weight: bolder;
 }
 body {
     font-family: 'Fira Sans Condensed', sans-serif;
@@ -40,4 +47,14 @@ footer {
     padding: 0 0.2em;
     border-radius: 2px;
     background-color: #545454;
+}
+code {
+    font-family: 'Source Code Pro', monospace;
+}
+pre {
+    display: table;
+}
+.tm2 {
+    background-color: #FFBE8B;
+    font-style: italic;
 }
