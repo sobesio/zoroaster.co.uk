@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Hello world from zoroaster!</title>
+        <link href="styles/app.css" rel="stylesheet">
+        <link href="styles/docco.css" rel="stylesheet">
+        <link href="img/favicon.ico" rel="shortcut icon">
+
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Fira+Sans+Condensed:400,400i" rel="stylesheet">
+    </head>
+    <body>
+        <div class="table">
+        <div class="left-column">
+            <div class="logo">
+    <img src="img/zoroaster.jpg" alt="prophet zoroaster" style="margin-bottom: 1em;"></img>
+</div>
+
+<div class="badges">
+    <a href="https://badge.fury.io/js/zoroaster">
+        <img src="https://badge.fury.io/js/zoroaster.svg" alt="npm version" height="18"></img>
+    </a>
+    <a href="https://travis-ci.org/Sobesednik/zoroaster">
+        <img src="https://travis-ci.org/Sobesednik/zoroaster.svg?branch=master" alt="travis ci"></img>
+    </a>
+    <a href="https://ci.appveyor.com/project/zavr-1/zoroaster/branch/master">
+        <img src="https://ci.appveyor.com/api/projects/status/1gc2cqf97ty69mfw/branch/master?svg=true" alt="appveyor ci"></img>
+    </a>
+    <a href="https://github.com/Sobesednik/zoroaster" class="GitHub">
+        GitHub
+    </a>
+</div>
+
+<h3>Pages</h3>
+<p class="list"><a href="index.html">Main Page</a>
+<a href="test-context.html">Test Context</a>
+<a href="test-file-organisation.html">Test File Organisation</a>
+<a href="comparison-of-javascript-testing-frameworks.html">JS Testing Frameworks</a>
+<a href="test-driven-development.html">Test-Driven Development</a>
+<a href="testing-glossary.html">Testing Gloassry</a></p>
+
+<h3>Contexts</h3>
+<p class="list">
+    <a href="https://www.npmjs.com/package/exiftool-context">Exiftool Context</a>
+</p>
+
+<h3>npm links</h3>
+<p class="list">
+    <a href="https://www.npmjs.com/package/zoroaster">zoroaster</a>
+    <a href="https://www.npmjs.com/package/tape">tape</a>
+    <a href="https://www.npmjs.com/package/mocha">mocha</a>
+    <a href="https://www.npmjs.com/package/jasmine">jasmine</a>
+    <a href="https://www.npmjs.com/package/jest">jest</a>
+</p>
+
+<div class="logo">
+    <img src="img/faravahar.jpg" alt="faravahar symbol" style="margin-bottom: 1em;"></img>
+</div>
+
+        </div>
+        <div class="right-column">
+            <h1>Test Driven Development</h1>
+<span class="tm2">Test driven development</span> is a software development methodology which enforces writing tests
+before implementing a feature. Despite the fact that it sounds harsh on developers not to let them
+start working on their product straight away, it brings such advantages as <span class="em">code quality</span> and allows
+to build up the <span class="em">test coverage</span> in step with source code. Instead of letting tests pile up for
+future, in <span class="tm2">TDD</span> a team of developers can be confident that each new introduced change has been
+properly tested.
+
+For example, you have made a package to take a screenshot, after which your project structure is
+similar to this:
+
+<pre><code class="fs hljs">- src
+- src/index.js
+- test
+- test/spec
+- test/spec/index.js</code></pre>
+
+Now, you want to make it record a video. Usually, people would be tended to the <span class="tm">src</span> folder,
+and either modify <span class="tm">index.js</span>, or create a new file <span class="tm">record-video.js</span>. In <span class="tm2">TDD</span>, however, the rule
+is to go to <span class="tm">test</span> directory, make a new file for the test suite of the new feature and write
+a basic test (which will fail at first). When test is ready, the source code for the logic of the
+feature can be written. For example, we create a new <span class="bold">test suite</span> first:
+
+<pre><code class="javascript hljs"><span class="hljs-comment">// test/spec/record-video.js</span>
+<span class="hljs-keyword">const</span> capturescreen = <span class="hljs-built_in">require</span>(<span class="hljs-string">'capturescreen'</span>)
+
+<span class="hljs-keyword">const</span> recordVideoTestSuite = {
+    <span class="hljs-string">'should be able to record a video'</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        <span class="hljs-keyword">return</span> capturescreen.video(<span class="hljs-number">1500</span>) <span class="hljs-comment">// record 1.5s video</span>
+    },
+}
+
+<span class="hljs-built_in">module</span>.exports = recordVideoTestSuite</code></pre>
+
+Run tests...
+
+<pre><code class="bash hljs">$ zoroaster <span class="hljs-built_in">test</span>/spec/</code></pre>
+
+And get an error in the result:
+
+<pre><code class="fs hljs">test/spec/record-video.js
+  <span class="cross">&#10007;</span>  should be able <span class="hljs-keyword">to</span> record a video
+  | TypeError: capturescreen.video is not a <span class="hljs-keyword">function</span>
+  |     at should be able <span class="hljs-keyword">to</span> record a video (/Users/user/zoroaster.co.uk/test/spec/record-video.js:<span class="hljs-number">5</span>:<span class="hljs-number">30</span>)
+
+test/spec/record-video.js &gt; should be able <span class="hljs-keyword">to</span> record a video
+  TypeError: capturescreen.video is not a <span class="hljs-keyword">function</span>
+      at should be able <span class="hljs-keyword">to</span> record a video (/Users/user/zoroaster.co.uk/test/spec/record-video.js:<span class="hljs-number">5</span>:<span class="hljs-number">30</span>)
+
+Executed <span class="hljs-number">1</span> tests: <span class="hljs-number">1</span> error.</code></pre>
+
+<h2>Implementing a feature</h2>
+When the first test is written, a video-recording feature can be added. We create a new file
+in the <span class="tm">src</span> directory:
+
+<pre><code class="js hljs"><span class="hljs-comment">// src/record-video.js</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">recordVideo</span>(<span class="hljs-params">duration</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> {
+        setTimeout(resolve, duration) <span class="hljs-comment">// pretend to record a video</span>
+    })
+}
+
+<span class="hljs-built_in">module</span>.exports = recordVideo</code></pre>
+
+Use it in our package's main function:
+
+<pre><code class="js hljs"><span class="hljs-comment">// src/index.js</span>
+<span class="hljs-keyword">const</span> recordVideo = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./record-video'</span>)
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">captureScreen</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-string">'Screen captured'</span>) <span class="hljs-comment">// pretend to capture a screen</span>
+}
+
+captureScreen.video = recordVideo
+
+<span class="hljs-built_in">module</span>.exports = captureScreen</code></pre>
+
+When the logic is implemented, we run tests again:
+
+<pre><code class="bash hljs">$ zoroaster <span class="hljs-built_in">test</span>/spec/</code></pre>
+
+And hooray, the test passed:
+
+<pre><code class="fs hljs"> test/spec
+   record-video.js
+    <span class="tick">&#10003;</span>  should be able <span class="hljs-keyword">to</span> record a video
+
+Executed <span class="hljs-number">1</span> tests.</code></pre>
+
+By progressively writing tests and adding source code which makes them pass, the software
+automatically aquires new specification in form of tests. <span class="tm2">Test-Driven Development</span> helps
+to develop discipline in consistently writing tests to make sure that the product meets
+quality expectations. It is very easy to write a lot of code which works <span class="em">now</span>, but is
+unmaintainable in the long-run due to the lack of test coverage. Therefore, if having tests is
+necessary for any software project, why keep it to the end and not begin by writing them?
+
+<h2>Zoroaster's watch mode</h2>
+<span class="tm">zoroaster</span> can be started in <span class="em">watch</span> mode. This means that tests are re-run automatically when
+a change is made to any source or test files.
+
+<pre><code class="bash hljs">$ zoroaster <span class="hljs-built_in">test</span>/spec &#8212;watch</code></pre>
+
+If we repeated the example above with this feature, we would see the following output:
+
+<pre><code class="fs hljs"> test/spec
+   record-video.js
+    <span class="cross">&#10007;</span>  should be able <span class="hljs-keyword">to</span> record a video
+    | TypeError: capturescreen.video is not a <span class="hljs-keyword">function</span>
+    |     at should be able <span class="hljs-keyword">to</span> record a video (/Users/user/zoroaster.co.uk/test/spec/record-video.js:<span class="hljs-number">5</span>:<span class="hljs-number">30</span>)
+
+test/spec &gt; record-video.js &gt; should be able <span class="hljs-keyword">to</span> record a video
+  TypeError: capturescreen.video is not a <span class="hljs-keyword">function</span>
+      at should be able <span class="hljs-keyword">to</span> record a video (/Users/user/zoroaster.co.uk/test/spec/record-video.js:<span class="hljs-number">5</span>:<span class="hljs-number">30</span>)
+
+Executed <span class="hljs-number">1</span> tests: <span class="hljs-number">1</span> error.
+
+ test/spec
+   record-video.js
+    <span class="tick">&#10003;</span>  should be able <span class="hljs-keyword">to</span> record a video
+
+Executed <span class="hljs-number">1</span> tests.</code></pre>
+
+Having tests re-run automatically saves a lot of developer's time. It facilitates
+<span class="tm2">test-driven development</span> and allows her to focus on tests and not be interrupted by contant
+necessity to execute a test command manually.
+
+<h3>Mocha watch mode</h3>
+<a href="https://mochajs.org/"><span class="em">mocha</span></a> also supports watch mode: <span class="tm">-w</span> or <span class="tm">&#8212;watch</span> flag will make
+<span class="em">mocha</span> re-run tests for you.
+
+        </div>
+        </div>
+        <footer>
+            &copy; <a href="https://sobesednik.media" style="color: #C80815">Sobesednik-Media</a>, 2017
+        </footer>
+    </body>
+</html>

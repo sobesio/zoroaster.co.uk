@@ -4,6 +4,7 @@
         <title>Hello world from zoroaster!</title>
         <link href="styles/app.css" rel="stylesheet">
         <link href="styles/docco.css" rel="stylesheet">
+        <link href="img/favicon.ico" rel="shortcut icon">
 
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Fira+Sans+Condensed:400,400i" rel="stylesheet">
     </head>
@@ -11,7 +12,7 @@
         <div class="table">
         <div class="left-column">
             <div class="logo">
-    <img src="img/zoroaster.jpg" alt"prophet zoroaster" style="margin-bottom: 1em;"></img>
+    <img src="img/zoroaster.jpg" alt="prophet zoroaster" style="margin-bottom: 1em;"></img>
 </div>
 
 <div class="badges">
@@ -30,34 +31,34 @@
 </div>
 
 <h3>Pages</h3>
-<p class="list">
-    <a href="/">Main Page</a>
-    <a href="/test-context.html">Test Context</a>
-    <a href="/fixtures.html">Export Fixtures</a>
-    <a href="/organisation.html">Better Organisation</a>
-    <a href="/tdd.html">Test Driver Development</a>
-</p>
+<p class="list"><a href="index.html">Main Page</a>
+<a href="test-context.html">Test Context</a>
+<a href="test-file-organisation.html">Test File Organisation</a>
+<a href="comparison-of-javascript-testing-frameworks.html">JS Testing Frameworks</a>
+<a href="test-driven-development.html">Test-Driven Development</a>
+<a href="testing-glossary.html">Testing Gloassry</a></p>
 
 <h3>Contexts</h3>
 <p class="list">
     <a href="https://www.npmjs.com/package/exiftool-context">Exiftool Context</a>
 </p>
 
-<h3> npm links </h3>
-<p>
+<h3>npm links</h3>
+<p class="list">
     <a href="https://www.npmjs.com/package/zoroaster">zoroaster</a>
     <a href="https://www.npmjs.com/package/tape">tape</a>
     <a href="https://www.npmjs.com/package/mocha">mocha</a>
     <a href="https://www.npmjs.com/package/jasmine">jasmine</a>
+    <a href="https://www.npmjs.com/package/jest">jest</a>
 </p>
 
-<blockquote>
-    If you don't test, you don't program.
-</blockquote>
+<div class="logo">
+    <img src="img/faravahar.jpg" alt="faravahar symbol" style="margin-bottom: 1em;"></img>
+</div>
 
         </div>
         <div class="right-column">
-            <h1>Zoroaster is a New Testing Framework for Node.js</h1>
+            <h1>Zoroaster is a Testing Framework for Node.js</h1>
 <span class="tm2">zoroaster</span> is a cool testing framework for Node.js. Unlike <span class="em">mocha</span> and <span class="em">jasmine</span>, it does not
 export global functions like <span class="em">describe</span>, <span class="em">it</span>, <span class="em">before</span>, <span class="em">beforeAll</span>, <span class="em">breforeEach</span>, but has a
 notion of a <span class="bold">Text Context</span> &#8212; an on object with a state, initiliased and destroyed for each test.
@@ -123,8 +124,8 @@ To execute tests, we use <span class="em">CLI</span> command:
 This should produce the following output:
 
 <pre><code class="fs hljs"> examples/index.js
-  &#10003;  should <span class="hljs-keyword">do</span> the right thing
-  &#10003;  should throw an error <span class="hljs-keyword">with</span> incorrect output
+  <span class="tick">&#10003;</span>  should <span class="hljs-keyword">do</span> the right thing
+  <span class="tick">&#10003;</span>  should throw an error <span class="hljs-keyword">with</span> incorrect output
 
 Executed <span class="hljs-number">2</span> tests.</code></pre>
 
@@ -139,7 +140,7 @@ Here are some examples of using <span class="tm2">zoroaster</span> for testing N
         </div>
         </div>
         <footer>
-            <a href="https://sobesednik.media" style="color: #C80815">Sobesednik-Media</a> 2017
+            &copy; <a href="https://sobesednik.media" style="color: #C80815">Sobesednik-Media</a>, 2017
         </footer>
     </body>
 </html>

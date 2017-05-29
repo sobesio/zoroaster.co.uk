@@ -1,4 +1,4 @@
-# Zoroaster is a New Testing Framework for Node.js
+# Zoroaster is a Testing Framework for Node.js
 
 ``zoroaster`` is a cool testing framework for Node.js. Unlike _mocha_ and _jasmine_, it does not
 export global functions like _describe_, _it_, _before_, _beforeAll_, _breforeEach_, but has a

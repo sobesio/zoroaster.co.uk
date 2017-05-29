@@ -58,13 +58,29 @@
 
         </div>
         <div class="right-column">
-            <h1>Text Context</h1>
-A test context is an object which is initialised for each test in a test suite. It is destroyed
-after the test is run, so that you can better care of garbage-handling, e.g., closing open
-connections and removing <span class="em">temp</span> files. To create a test context, write a function and pass it
-in the <span class="tm">context</span> property of a test suite:
+            <h1>Test File Organisation for Zoroaster</h1>
+Organising your test files has never been simpler. Create a <span class="tm">test</span> directory in your project root,
+in it place <span class="tm">context</span>, <span class="tm">spec</span>, <span class="tm">fixtures</span> and <span class="tm">temp</span> directories (optionally, if you work with
+<span class="em">io</span>). For example, your project file structure might look like this:
 
-<pre><code class="js hljs"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">123</span>)</code></pre>
+<pre><code class="fs hljs">- CHANGELOG.md
+- LICENSE
+- package.json
+- README.md
+- src
+- src/index.js
+- test
+- test/context
+- test/context/ScreenCapture.js
+- test/fixtures
+- test/fixtures/screenshot.png
+- test/spec
+- test/spec/index.js
+- test/spec/record-video.js</code></pre>
+
+All testing functions which can be required by both test files should be exported in <span class="em">ScreenCapture</span>
+context. This makes test independent of the scope of <span class="tm">js</span> files, making it easy to create new
+test suites in new files.
 
         </div>
         </div>
