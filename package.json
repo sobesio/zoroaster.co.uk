@@ -1,11 +1,11 @@
 {
   "name": "zoroaster.co.uk",
   "version": "1.0.0",
-  "description": "zoroaster.co.uk website ",
+  "description": "zoroaster.co.uk website",
   "main": "index.js",
   "scripts": {
     "test": "zoroaster test",
-    "build": "webpack"
+    "build": "node src/runtemplate.js"
   },
   "repository": {
     "type": "git",
@@ -24,14 +24,13 @@
   "homepage": "https://github.com/Sobesednik/zoroaster.co.uk#readme",
   "private": true,
   "devDependencies": {
-    "css-loader": "^0.26.1",
-    "extract-text-webpack-plugin": "^2.0.0-rc.2",
-    "style-loader": "^0.13.1",
-    "webpack": "^2.2.0",
-    "zoroaster": "^0.2.0"
+    "zoroaster": "0.4.6"
   },
   "dependencies": {
-    "highlight.js": "^9.9.0",
-    "lodash": "^4.17.4"
+    "catchment": "1.0.0",
+    "highlight.js": "9.11.0",
+    "lodash": "4.17.4",
+    "restream": "1.2.0",
+    "wrote": "0.4.0"
   }
 }

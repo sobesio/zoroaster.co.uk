@@ -1,0 +1,43 @@
+.tm {
+    background-color: lightgreen;
+}
+body {
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+blockquote {
+    margin: 0;
+    font-style: italic;
+}
+.left-column .badges a {
+    display: block;
+}
+footer {
+    margin-top: 1em;
+    border-top: 1px dashed;
+    padding-top: 1em;
+}
+.table {
+    display: table;
+    padding-bottom: 2em;
+}
+.table > .left-column {
+    display: table-cell;
+    text-align: center;
+}
+.table > .right-column {
+    padding-left: 2em;
+    display: table-cell;
+    vertical-align: top;
+}
+.list > * {
+    display: block;
+}
+.GitHub {
+    margin-top: 1em;
+    color: white;
+    text-decoration: none;
+    display: inline-block !important;
+    padding: 0 0.2em;
+    border-radius: 2px;
+    background-color: #545454;
+}
