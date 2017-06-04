@@ -6,6 +6,6 @@ It is important to know the key terms in used in software testing. Here is a lis
 * `test suite`
 * `testing framework`
 * `test coverage`
-* `continious integration`
+* `continuous integration`
 * `mocha`
 * `assertion library`
